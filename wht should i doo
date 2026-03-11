@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Decision Maker</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle at top,#141414,#000);
+font-family:Segoe UI;
+color:white;
+overflow:hidden;
+}
+
+.container{
+text-align:center;
+}
+
+h1{
+font-weight:300;
+letter-spacing:3px;
+margin-bottom:10px;
+}
+
+.pick{
+opacity:.7;
+margin-bottom:40px;
+}
+
+.hand{
+font-size:150px;
+cursor:pointer;
+animation:float 2.5s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+.reveal{
+display:none;
+text-align:center;
+animation:fade 1s ease;
+}
+
+.reveal h2{
+font-size:42px;
+letter-spacing:2px;
+}
+
+.retry{
+margin-top:30px;
+padding:12px 28px;
+background:#ffffff10;
+border:1px solid #ffffff20;
+border-radius:25px;
+color:white;
+cursor:pointer;
+font-size:14px;
+transition:.3s;
+}
+
+.retry:hover{
+background:#ffffff25;
+}
+
+@keyframes fade{
+from{opacity:0; transform:scale(.8)}
+to{opacity:1; transform:scale(1)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="game">
+
+<h1>WHAT SHOULD I DO RN??</h1>
+<div class="pick">Pick a finger ✨</div>
+
+<div class="hand" onclick="choose()">✌🏻</div>
+
+</div>
+
+<div class="reveal" id="result">
+
+<h2>OOOO INSTA SCROLL OKAA 😋</h2>
+
+<button class="retry" onclick="retry()">Try Again</button>
+
+</div>
+
+<script>
+
+function choose(){
+
+document.getElementById("game").style.display="none"
+
+setTimeout(()=>{
+document.getElementById("result").style.display="block"
+},500)
+
+}
+
+function retry(){
+
+document.getElementById("result").style.display="none"
+document.getElementById("game").style.display="block"
+
+}
+
+</script>
+
+</body>
+</html>
