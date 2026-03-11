@@ -48,17 +48,18 @@ animation:float 2.5s ease-in-out infinite;
 .reveal{
 display:none;
 text-align:center;
-animation:fade 1s ease;
+animation:fade 0.8s ease;
 }
 
 .reveal h2{
-font-size:42px;
-letter-spacing:2px;
+font-size:34px;
+max-width:600px;
+margin:auto;
 }
 
 .retry{
 margin-top:30px;
-padding:12px 28px;
+padding:12px 30px;
 background:#ffffff10;
 border:1px solid #ffffff20;
 border-radius:25px;
@@ -72,8 +73,19 @@ transition:.3s;
 background:#ffffff25;
 }
 
+.finalText{
+opacity:0;
+margin-top:30px;
+font-size:28px;
+transition:opacity 1s ease;
+}
+
+.show{
+opacity:1;
+}
+
 @keyframes fade{
-from{opacity:0; transform:scale(.8)}
+from{opacity:0; transform:scale(.85)}
 to{opacity:1; transform:scale(1)}
 }
 
@@ -91,30 +103,54 @@ to{opacity:1; transform:scale(1)}
 
 </div>
 
+
 <div class="reveal" id="result">
 
-<h2>OOOO INSTA SCROLL OKAA 😋</h2>
+<h2 id="message">OOOOO INSTA SCROLL OKAAA</h2>
 
-<button class="retry" onclick="retry()">Try Again</button>
+<button class="retry" id="retryBtn" onclick="next()">Try Again</button>
+
+<div class="finalText" id="finalText">
+WWOHOOOOOO 😋😋😋
+</div>
 
 </div>
 
+
 <script>
 
+let attempt = 0
+
+const messages = [
+"OOOOO INSTA SCROLL OKAAA",
+"YOU REALLY THINK IM GONNA STUDYYY??? ME SCROLLING INSTA ONLY",
+"WANNA TRY AGAIN AABABABAB 🤣",
+"CMONN ABTO EVN YOU ARE IMPRESSED OF THIS HEHEHE",
+"BASSS CODE ENDS HEREE ITNAA TIME NI THA MERE PAAS SCROLL KRNE DO"
+]
+
 function choose(){
-
 document.getElementById("game").style.display="none"
-
-setTimeout(()=>{
 document.getElementById("result").style.display="block"
-},500)
-
+document.getElementById("message").innerText = messages[0]
+attempt = 1
 }
 
-function retry(){
+function next(){
 
-document.getElementById("result").style.display="none"
-document.getElementById("game").style.display="block"
+if(attempt < messages.length){
+document.getElementById("message").innerText = messages[attempt]
+attempt++
+}
+
+if(attempt === messages.length){
+document.getElementById("retryBtn").innerText = "OHKAYY"
+}
+
+if(attempt > messages.length){
+document.getElementById("retryBtn").style.display="none"
+document.getElementById("finalText").classList.add("show")
+}
 
 }
 
