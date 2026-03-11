@@ -189,6 +189,7 @@ WWOHOOOOOO 😋😋😋
 <script>
 
 let attempt = 0
+let busy = false
 
 const messages = [
 "OOOOO INSTA SCROLL OKAAA",
@@ -199,6 +200,9 @@ const messages = [
 ]
 
 function choose(){
+
+if(busy) return
+busy = true
 
 document.getElementById("game").style.display="none"
 document.getElementById("thinking").style.display="block"
@@ -214,11 +218,16 @@ if(attempt >= 4){
 document.getElementById("actionBtn").innerText="OHKAYY"
 }
 
-},1800)
+busy = false
+
+},1500)
 
 }
 
 function action(){
+
+if(busy) return
+busy = true
 
 if(attempt < 4){
 
@@ -227,10 +236,14 @@ attempt++
 document.getElementById("result").style.display="none"
 document.getElementById("game").style.display="block"
 
+setTimeout(()=>{ busy=false },200)
+
 }else{
 
 document.getElementById("actionBtn").style.display="none"
 document.getElementById("finalText").classList.add("show")
+
+busy=false
 
 }
 
