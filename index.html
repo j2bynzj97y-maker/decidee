@@ -185,7 +185,6 @@ WWOHOOOOOO 😋😋😋
 
 </div>
 
-
 <script>
 
 let attempt = 0
@@ -194,9 +193,17 @@ let busy = false
 const messages = [
 "OOOOO INSTA SCROLL OKAAA",
 "YOU REALLY THINK IM GONNA STUDYYY??? ME SCROLLING INSTA ONLY",
-"SAMEEE ANS, WANNA TRY AGAIN AABABABAB 🤣",
-"ATP YOU SHOULD KNOW THE ANS AND U LITT IMPRESSED OF THIS ARENT YOU😋",
+"WANNA TRY AGAIN AABABABAB 🤣",
+"CMONN ABTO EVN YOU ARE IMPRESSED OF THIS HEHEHE",
 "BASSS CODE ENDS HEREE ITNAA TIME NI THA MERE PAAS SCROLL KRNE DO"
+]
+
+const loadingTexts = [
+"HMMMMM LEMMEEE SEEE WHT YOU PICKEDD.....",
+"AGAINNNN HMMM, LEMMEE SEEE.......",
+"DUMBOOOO YOU ARE.......",
+"AGAINNNNNNNN??........",
+"KRRRR DIYAA NA CWAZZYYY 😆😆....."
 ]
 
 function choose(){
@@ -206,6 +213,8 @@ busy = true
 
 document.getElementById("game").style.display="none"
 document.getElementById("thinking").style.display="block"
+
+document.querySelector("#thinking div").innerText = loadingTexts[attempt]
 
 setTimeout(()=>{
 
