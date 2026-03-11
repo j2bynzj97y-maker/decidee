@@ -48,16 +48,16 @@ animation:float 2.5s ease-in-out infinite;
 .reveal{
 display:none;
 text-align:center;
-animation:fade 0.8s ease;
+animation:fade .6s ease;
 }
 
 .reveal h2{
 font-size:34px;
-max-width:600px;
+max-width:650px;
 margin:auto;
 }
 
-.retry{
+button{
 margin-top:30px;
 padding:12px 30px;
 background:#ffffff10;
@@ -69,14 +69,14 @@ font-size:14px;
 transition:.3s;
 }
 
-.retry:hover{
+button:hover{
 background:#ffffff25;
 }
 
 .finalText{
 opacity:0;
-margin-top:30px;
-font-size:28px;
+margin-top:25px;
+font-size:30px;
 transition:opacity 1s ease;
 }
 
@@ -94,6 +94,8 @@ to{opacity:1; transform:scale(1)}
 
 <body>
 
+<!-- GAME SCREEN -->
+
 <div class="container" id="game">
 
 <h1>WHAT SHOULD I DO RN??</h1>
@@ -103,12 +105,13 @@ to{opacity:1; transform:scale(1)}
 
 </div>
 
+<!-- RESULT SCREEN -->
 
 <div class="reveal" id="result">
 
-<h2 id="message">OOOOO INSTA SCROLL OKAAA</h2>
+<h2 id="message"></h2>
 
-<button class="retry" id="retryBtn" onclick="next()">Try Again</button>
+<button id="actionBtn" onclick="action()">Try Again</button>
 
 <div class="finalText" id="finalText">
 WWOHOOOOOO 😋😋😋
@@ -130,26 +133,32 @@ const messages = [
 ]
 
 function choose(){
+
 document.getElementById("game").style.display="none"
 document.getElementById("result").style.display="block"
-document.getElementById("message").innerText = messages[0]
-attempt = 1
-}
 
-function next(){
-
-if(attempt < messages.length){
 document.getElementById("message").innerText = messages[attempt]
+
+if(attempt >= 4){
+document.getElementById("actionBtn").innerText = "OHKAYY"
+}
+
+}
+
+function action(){
+
+if(attempt < 4){
+
 attempt++
-}
 
-if(attempt === messages.length){
-document.getElementById("retryBtn").innerText = "OHKAYY"
-}
+document.getElementById("result").style.display="none"
+document.getElementById("game").style.display="block"
 
-if(attempt > messages.length){
-document.getElementById("retryBtn").style.display="none"
+}else{
+
+document.getElementById("actionBtn").style.display="none"
 document.getElementById("finalText").classList.add("show")
+
 }
 
 }
