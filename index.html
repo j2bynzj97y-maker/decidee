@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Decision Maker</title>
+<title>Decision Machine</title>
 
 <style>
+
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -12,7 +16,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:radial-gradient(circle at top,#141414,#000);
+background:radial-gradient(circle at top,#111,#000);
 font-family:Segoe UI;
 color:white;
 overflow:hidden;
@@ -37,6 +41,11 @@ margin-bottom:40px;
 font-size:150px;
 cursor:pointer;
 animation:float 2.5s ease-in-out infinite;
+transition:.3s;
+}
+
+.hand:hover{
+transform:scale(1.1);
 }
 
 @keyframes float{
@@ -45,10 +54,34 @@ animation:float 2.5s ease-in-out infinite;
 100%{transform:translateY(0)}
 }
 
+.thinking{
+display:none;
+font-size:22px;
+opacity:.8;
+animation:fade 1s ease;
+}
+
+.loader{
+margin-top:20px;
+width:40px;
+height:40px;
+border:4px solid #ffffff20;
+border-top:4px solid white;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-left:auto;
+margin-right:auto;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
+
 .reveal{
 display:none;
 text-align:center;
-animation:fade .6s ease;
+animation:pop .6s ease;
 }
 
 .reveal h2{
@@ -59,7 +92,7 @@ margin:auto;
 
 button{
 margin-top:30px;
-padding:12px 30px;
+padding:12px 32px;
 background:#ffffff10;
 border:1px solid #ffffff20;
 border-radius:25px;
@@ -75,8 +108,9 @@ background:#ffffff25;
 
 .finalText{
 opacity:0;
-margin-top:25px;
-font-size:30px;
+margin-top:30px;
+font-size:36px;
+letter-spacing:3px;
 transition:opacity 1s ease;
 }
 
@@ -84,9 +118,33 @@ transition:opacity 1s ease;
 opacity:1;
 }
 
-@keyframes fade{
-from{opacity:0; transform:scale(.85)}
+@keyframes pop{
+from{opacity:0; transform:scale(.8)}
 to{opacity:1; transform:scale(1)}
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+.glow{
+position:absolute;
+width:300px;
+height:300px;
+background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);
+filter:blur(60px);
+animation:move 10s linear infinite;
+}
+
+.glow:nth-child(2){
+animation-duration:14s;
+}
+
+@keyframes move{
+0%{transform:translate(-40vw,-40vh)}
+50%{transform:translate(40vw,30vh)}
+100%{transform:translate(-40vw,-40vh)}
 }
 
 </style>
@@ -94,7 +152,8 @@ to{opacity:1; transform:scale(1)}
 
 <body>
 
-<!-- GAME SCREEN -->
+<div class="glow"></div>
+<div class="glow"></div>
 
 <div class="container" id="game">
 
@@ -105,7 +164,14 @@ to{opacity:1; transform:scale(1)}
 
 </div>
 
-<!-- RESULT SCREEN -->
+
+<div class="container thinking" id="thinking">
+
+<div>Analyzing your life choices...</div>
+<div class="loader"></div>
+
+</div>
+
 
 <div class="reveal" id="result">
 
@@ -135,13 +201,20 @@ const messages = [
 function choose(){
 
 document.getElementById("game").style.display="none"
+document.getElementById("thinking").style.display="block"
+
+setTimeout(()=>{
+
+document.getElementById("thinking").style.display="none"
 document.getElementById("result").style.display="block"
 
 document.getElementById("message").innerText = messages[attempt]
 
 if(attempt >= 4){
-document.getElementById("actionBtn").innerText = "OHKAYY"
+document.getElementById("actionBtn").innerText="OHKAYY"
 }
+
+},1800)
 
 }
 
